@@ -1,0 +1,34 @@
+ <div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>Editing Book</h2>
+      <% if @book.errors.any? %>
+      <h3 class="error"><%= @book.errors.count %> error prohibited this obj from being saved:</h3>
+      <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li class="error error_messages"><%= message %></li>
+      <% end %>
+      </ul>
+      <% end %>
+      <div class="container px-5 px-sm-0">
+      <div class="row">
+      <div class="col-md-8">
+      <%= form_with model: @book, url: book_path(@book.id), method: :patch do |f| %>
+      <h4>タイトル</h4>
+      <%= f.text_field :title %>
+  
+      <h4>本文</h4>
+      <%= f.text_area :body %>
+      <input type="submit" name="commit" value="Update Book" class="btn btn-success" data-disable-with="Update Book">
+      <% end %>
+      <div>
+        <%= link_to "Show", book_path(@book.id), class:"book_#{@book.id}"  %>
+         |
+        <%= link_to "Back" , books_path, class:"back" %>
+         </div>
+    </div>
+  </div>
+      </div>
+    </div>
+  </div>
+</div>
